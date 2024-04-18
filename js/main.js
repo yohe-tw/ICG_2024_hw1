@@ -89,7 +89,7 @@ function initShaders() {
         gl.enableVertexAttribArray(shaderProgram[key].vertexPositionAttribute);
         shaderProgram[key].vertexFrontColorAttribute = gl.getAttribLocation(shaderProgram[key], "aFrontColor");
         gl.enableVertexAttribArray(shaderProgram[key].vertexFrontColorAttribute);
-        if(key != 'flat') {
+        if(key != 'flat') { 
             shaderProgram[key].vertexNormalAttribute = gl.getAttribLocation(shaderProgram[key], "aVertexNormal");
             gl.enableVertexAttribArray(shaderProgram[key].vertexNormalAttribute);
         }
@@ -241,6 +241,7 @@ function drawScene() {
         
         // Setup teapot normal data
         if(shader[i] != 'flat') {
+            console.log("not flat")
             gl.bindBuffer(gl.ARRAY_BUFFER, Buffer[object[i]].teapotVertexNormalBuffer);
             gl.vertexAttribPointer(shaderProgram[shader[i]].vertexNormalAttribute, 
                                     Buffer[object[i]].teapotVertexNormalBuffer.itemSize, 
