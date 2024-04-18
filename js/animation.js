@@ -7,12 +7,10 @@ let dancer = [[Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5], [
 
 function dancing() {
     if(danceflag) requestAnimFrame(dancing);    
-    console.log("dancing")
     if(danceiter > 60) {
         dancet = [[Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5], [Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5], [Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5]]
         dancer = [[Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5], [Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5], [Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5]]
         danceiter = 0
-        console.log(dancet)
     }
     let step = 1, rstep = 2, cstep = 10
     document.getElementById("transX1").value = String(step * dancet[0][0] + Number(document.getElementById("transX1").value))

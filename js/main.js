@@ -169,7 +169,6 @@ function drawScene() {
     
 
     // Setup Projection Matrix
-    console.log(clipping)
     mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, Number(clipping), pMatrix);
 
 
