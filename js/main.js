@@ -89,9 +89,12 @@ function initShaders() {
         gl.enableVertexAttribArray(shaderProgram[key].vertexPositionAttribute);
         shaderProgram[key].vertexFrontColorAttribute = gl.getAttribLocation(shaderProgram[key], "aFrontColor");
         gl.enableVertexAttribArray(shaderProgram[key].vertexFrontColorAttribute);
-        shaderProgram[key].vertexNormalAttribute = gl.getAttribLocation(shaderProgram[key], "aVertexNormal");
-        gl.enableVertexAttribArray(shaderProgram[key].vertexNormalAttribute);    
-
+        if(key != 'flat') {
+            shaderProgram[key].vertexNormalAttribute = gl.getAttribLocation(shaderProgram[key], "aVertexNormal");
+            gl.enableVertexAttribArray(shaderProgram[key].vertexNormalAttribute);
+        }
+        
+        console.log(shaderProgram[key])
         shaderProgram[key].pMatrixUniform  = gl.getUniformLocation(shaderProgram[key], "uPMatrix");
         shaderProgram[key].mvMatrixUniform = gl.getUniformLocation(shaderProgram[key], "uMVMatrix");
     }
@@ -107,6 +110,7 @@ function degToRad(degrees) {
 }
 
 function handleLoadedTeapot(BufferData, object) {
+
     Buffer[object].teapotVertexPositionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, Buffer[object].teapotVertexPositionBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(BufferData.vertexPositions), gl.STATIC_DRAW);
@@ -126,12 +130,13 @@ function handleLoadedTeapot(BufferData, object) {
     Buffer[object].teapotVertexFrontColorBuffer.numItems = BufferData.vertexFrontcolors.length / 3;
 }
 
-function loadObject(object) {console.log(object)
+function loadObject(object) {
     var request = new XMLHttpRequest();
     request.open("GET", `./model/${object}.json`);
     request.onreadystatechange = function () {
-        if (request.readyState == 4) {
+        if (request.readyState == 4) {console.log(object)
             handleLoadedTeapot(JSON.parse(request.responseText), object);
+            console.log(Buffer)
         }
     }
     request.send();
@@ -193,6 +198,10 @@ function drawScene() {
     update_shader();
     update_object();
     for(var i = 0; i < 3; i++) {
+        if (!Buffer[object[i]].teapotVertexPositionBuffer) {
+            return ;
+        }
+
         // Setup Model-View Matrix
         mat4.identity(mvMatrix[i]);
         mat4.translate(mvMatrix[i], [0,0,0]);
@@ -232,13 +241,16 @@ function drawScene() {
                                 0);
         
         // Setup teapot normal data
-        gl.bindBuffer(gl.ARRAY_BUFFER, Buffer[object[i]].teapotVertexNormalBuffer);
-        gl.vertexAttribPointer(shaderProgram[shader[i]].vertexNormalAttribute, 
-                                Buffer[object[i]].teapotVertexNormalBuffer.itemSize, 
-                                gl.FLOAT, 
-                                false, 
-                                0, 
-                                0);
+        if(shader[i] != 'flat') {
+            gl.bindBuffer(gl.ARRAY_BUFFER, Buffer[object[i]].teapotVertexNormalBuffer);
+            gl.vertexAttribPointer(shaderProgram[shader[i]].vertexNormalAttribute, 
+                                    Buffer[object[i]].teapotVertexNormalBuffer.itemSize, 
+                                    gl.FLOAT, 
+                                    false, 
+                                    0, 
+                                    0);    
+        }
+        
     
         // Setup ambient light and light position
         gl.uniform1f(gl.getUniformLocation(shaderProgram[shader[i]], "ka"), ka[i]);
