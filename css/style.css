@@ -1,0 +1,87 @@
+body {
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    font-family: 'Arial';
+}
+
+canvas {
+    align-self: center;
+}
+
+#item-control {
+    width: 100%;
+    display: flex;
+    justify-self: start;
+
+}
+
+#global-control {
+    width: 33%;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    width: 33%;
+}
+
+#item1 {
+    background-color: rgb(255, 190, 233);
+}
+
+#item2 {
+    background-color: rgb(255, 251, 173);
+}
+
+#item3 {
+    background-color: rgb(163, 249, 255);
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+input {
+    width: 100%;
+}
+
+select {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+}
+
+p {
+    font-family: 'papyrus';
+}
+
+.itemtitle {
+    margin: 5px;
+    font-size: 20px;
+    font-family:'Comic Sans MS';
+    text-align: center;
+}
+
+.colorbackground {
+    border-radius: 5px;
+}
+
+#danceButton {
+    align-self: center;
+    background-color: #2f00ff; 
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 10px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    font-family:'Comic Sans MS';
+  }
