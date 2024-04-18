@@ -1,7 +1,6 @@
 const flat_vertex = `
 attribute vec3 aVertexPosition;
 attribute vec3 aFrontColor;
-attribute vec3 aVertexNormal;
 
 uniform mat4 uMVMatrix;
 uniform mat4 uPMatrix;
@@ -14,7 +13,6 @@ void main(void) {
     // Transform VertexPosition and VertexNormal to world coordinate system
     vec3 mvVertex = (uMVMatrix * vec4(aVertexPosition, 1.0)).xyz;
     mat3 normalMVMatrix = mat3(uMVMatrix);
-    vec3 mvNormal = normalMVMatrix * aVertexNormal;
 
     fragcolor = aFrontColor;
     vertex_pos = mvVertex;
