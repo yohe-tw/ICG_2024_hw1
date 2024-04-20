@@ -265,7 +265,7 @@ function drawScene() {
     
         gl.drawArrays(gl.TRIANGLES, 0, Buffer[object[i]].teapotVertexPositionBuffer.numItems);
     }
-    
+    console.log(tx, ty, tz)
 }
 
 function animate() {
