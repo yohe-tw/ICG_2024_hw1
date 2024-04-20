@@ -3,8 +3,8 @@
 
 <head>
 <title>ICG WebGL &mdash; HW1</title>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="description" content="2024年歐陽明教授開設的計算機圖學作業一">
 <script type="text/javascript" src="./js/glMatrix-0.9.5.min.js"></script>
 <script type="text/javascript" src="./js/webgl-utils.js"></script>
 
@@ -38,9 +38,9 @@
 </head>
 
 <body onload="webGLStart();">
-    <canvas id="ICG-canvas" style="border: none;" width="1060" height="590" ></canvas>
+    <canvas id="ICG-canvas" style="border: none;" width="1000" height="600" ></canvas>
     <div id="item-control">
-        <div id="item1" class="item">
+        <div id="item1" class="block">
             <p class="itemtitle">item 1</p>
             <table>
                 <tr>
@@ -99,7 +99,7 @@
                 </tr>
             </table>
         </div>
-        <div id="item2" class="item">
+        <div id="item2" class="block">
             <p class="itemtitle">item 2</p>
             <table>
                 <tr>
@@ -158,7 +158,7 @@
                 </tr>
             </table>
         </div>
-        <div id="item3" class="item">
+        <div id="item3" class="block">
             <p class="itemtitle">item 3</p>
             <table>
                 <tr>
@@ -217,65 +217,79 @@
                 </tr>
             </table>
         </div>
+        <div id="description" class="block">
+            <p class="itemtitle">feature</p>
+            <ul id="descriptionList">
+                <li>Meet all basic requirement</li>
+                <li>Implement toon shader</li>
+                <li>Use WASD to move, use space to go up, and use shift to go down, just like in minecraft.</li>
+                <li>Drag the mouse in the canvas to rotate the perspective</li>
+                <li>cool dance mode button (please click when voice is on)</li>
+            </ul>
+            <div id="links">
+                <a class="link" href="https://github.com/yohe-tw/ICG_2024_hw1">source code</a>
+                <a class="link" href="/">my homepage</a>
+            </div>
+        </div>
+        <div id="global-control" class="block">
+            <p class="itemtitle">Global varible</p>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>X axis / Red</th>
+                    <th>Y axis / Green</th>
+                    <th>Z axis / Blue</th>
+                </tr>
+                <tr>
+                    <th>background color</th>
+                    <td><input id="backR" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_background_color()"></td>
+                    <td><input id="backG" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_background_color()"></td>
+                    <td><input id="backB" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_background_color()"></td>
+                </tr>
+                <tr>
+                    <th>light1 pos</th>
+                    <td><input id="l1locX" type="range" autocomplete="off" value="30" max="40" min="-40" oninput="update_light_location()"></td>
+                    <td><input id="l1locY" type="range" autocomplete="off" value="20" max="40" min="-40" oninput="update_light_location()"></td>
+                    <td><input id="l1locZ" type="range" autocomplete="off" value="-25" max="0" min="-75" oninput="update_light_location()"></td>
+                </tr>
+                <tr>
+                    <th id="light1colorbackground" class="colorbackground">light1 color</th>
+                    <td><input id="l1colorX" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_light_color()"></td>
+                    <td><input id="l1colorY" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
+                    <td><input id="l1colorZ" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
+                </tr>
+                <tr>
+                    <th>light2 pos</th>
+                    <td><input id="l2locX" type="range" autocomplete="off" value="-30" max="40" min="-40" oninput="update_light_location()"></td>
+                    <td><input id="l2locY" type="range" autocomplete="off" value="20" max="40" min="-40" oninput="update_light_location()"></td>
+                    <td><input id="l2locZ" type="range" autocomplete="off" value="-25" max="0" min="-75" oninput="update_light_location()"></td>
+                </tr>
+                <tr>
+                    <th id="light2colorbackground" class="colorbackground">light2 color</th>
+                    <td><input id="l2colorX" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
+                    <td><input id="l2colorY" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
+                    <td><input id="l2colorZ" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_light_color()"></td>
+                </tr>
+                <tr>
+                    <th>light3 pos</th>
+                    <td><input id="l3locX" type="range" autocomplete="off" value="0" max="40" min="-40" oninput="update_light_location()"></td>
+                    <td><input id="l3locY" type="range" autocomplete="off" value="20" max="40" min="-40" oninput="update_light_location()"></td>
+                    <td><input id="l3locZ" type="range" autocomplete="off" value="-75" max="0" min="-75" oninput="update_light_location()"></td>
+                </tr>
+                <tr>
+                    <th id="light3colorbackground" class="colorbackground">light3 color</th>
+                    <td><input id="l3colorX" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
+                    <td><input id="l3colorY" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_light_color()"></td>
+                    <td><input id="l3colorZ" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
+                </tr>
+                <tr>
+                    <th>3D clipping</th>
+                    <td><input id="3dclip" type="range" autocomplete="off" value="150" max="255" min="10" oninput="update_clip()"></td>
+                </tr>
+            </table>
+        </div>
     </div>
-    <div id="global-control">
-        <p class="itemtitle">Global varible</p>
-        <table>
-            <tr>
-                <th></th>
-                <th>X axis / Red</th>
-                <th>Y axis / Green</th>
-                <th>Z axis / Blue</th>
-            </tr>
-            <tr>
-                <th>background color</th>
-                <td><input id="backR" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_background_color()"></td>
-                <td><input id="backG" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_background_color()"></td>
-                <td><input id="backB" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_background_color()"></td>
-            </tr>
-            <tr>
-                <th>light1 pos</th>
-                <td><input id="l1locX" type="range" autocomplete="off" value="30" max="40" min="-40" oninput="update_light_location()"></td>
-                <td><input id="l1locY" type="range" autocomplete="off" value="20" max="40" min="-40" oninput="update_light_location()"></td>
-                <td><input id="l1locZ" type="range" autocomplete="off" value="-25" max="0" min="-75" oninput="update_light_location()"></td>
-            </tr>
-            <tr>
-                <th id="light1colorbackground" class="colorbackground">light1 color</th>
-                <td><input id="l1colorX" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_light_color()"></td>
-                <td><input id="l1colorY" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
-                <td><input id="l1colorZ" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
-            </tr>
-            <tr>
-                <th>light2 pos</th>
-                <td><input id="l2locX" type="range" autocomplete="off" value="-30" max="40" min="-40" oninput="update_light_location()"></td>
-                <td><input id="l2locY" type="range" autocomplete="off" value="20" max="40" min="-40" oninput="update_light_location()"></td>
-                <td><input id="l2locZ" type="range" autocomplete="off" value="-25" max="0" min="-75" oninput="update_light_location()"></td>
-            </tr>
-            <tr>
-                <th id="light2colorbackground" class="colorbackground">light2 color</th>
-                <td><input id="l2colorX" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
-                <td><input id="l2colorY" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
-                <td><input id="l2colorZ" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_light_color()"></td>
-            </tr>
-            <tr>
-                <th>light3 pos</th>
-                <td><input id="l3locX" type="range" autocomplete="off" value="0" max="40" min="-40" oninput="update_light_location()"></td>
-                <td><input id="l3locY" type="range" autocomplete="off" value="20" max="40" min="-40" oninput="update_light_location()"></td>
-                <td><input id="l3locZ" type="range" autocomplete="off" value="-75" max="0" min="-75" oninput="update_light_location()"></td>
-            </tr>
-            <tr>
-                <th id="light3colorbackground" class="colorbackground">light3 color</th>
-                <td><input id="l3colorX" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
-                <td><input id="l3colorY" type="range" autocomplete="off" value="0" max="255" min="0" oninput="update_light_color()"></td>
-                <td><input id="l3colorZ" type="range" autocomplete="off" value="255" max="255" min="0" oninput="update_light_color()"></td>
-            </tr>
-            <tr>
-                <th>3D clipping</th>
-                <td><input id="3dclip" type="range" autocomplete="off" value="150" max="255" min="10" oninput="update_clip()"></td>
-            </tr>
-        </table>
-        <button onclick="reverse_danceflag()" id="danceButton">press to start/stop dance mode</button>
-    </div>
+    <button onclick="reverse_danceflag()" id="danceButton">press to start/stop dance mode</button>
 </body>
 
 </html>

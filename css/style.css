@@ -4,6 +4,7 @@ body {
     align-content: center;
     align-items: center;
     font-family: 'Arial';
+    background-color: azure;
 }
 
 canvas {
@@ -13,19 +14,18 @@ canvas {
 #item-control {
     width: 100%;
     display: flex;
-    justify-self: start;
-
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-#global-control {
-    width: 33%;
-    background-color: aquamarine;
+.block {
+    width: 500px;
+    height: 350px;
     display: flex;
     flex-direction: column;
-}
-
-.item {
-    width: 33%;
+    justify-content: space-around;
+    border: none;
+    border-radius: 30px;
 }
 
 #item1 {
@@ -38,6 +38,15 @@ canvas {
 
 #item3 {
     background-color: rgb(163, 249, 255);
+}
+
+#description {
+    background-color: rgb(255, 210, 166);
+    font-family:'Comic Sans MS';
+}
+
+#global-control {
+    background-color: aquamarine;
 }
 
 table {
@@ -72,16 +81,36 @@ p {
     border-radius: 5px;
 }
 
+#descriptionList {
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.link {
+    border-radius: 5px;
+    background-color: #34ff5c;
+    border: none;
+}
+
 #danceButton {
     align-self: center;
     background-color: #2f00ff; 
     border: none;
     color: rgb(255, 255, 255);
     padding: 10px 50px;
+    margin: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
     font-family:'Comic Sans MS';
-  }
+}

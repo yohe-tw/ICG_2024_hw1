@@ -94,7 +94,7 @@ function initShaders() {
             gl.enableVertexAttribArray(shaderProgram[key].vertexNormalAttribute);
         }
         
-        console.log(shaderProgram[key])
+        //console.log(shaderProgram[key])
         shaderProgram[key].pMatrixUniform  = gl.getUniformLocation(shaderProgram[key], "uPMatrix");
         shaderProgram[key].mvMatrixUniform = gl.getUniformLocation(shaderProgram[key], "uMVMatrix");
     }
@@ -134,9 +134,9 @@ function loadObject(object) {
     var request = new XMLHttpRequest();
     request.open("GET", `./model/${object}.json`);
     request.onreadystatechange = function () {
-        if (request.readyState == 4) {console.log(object)
+        if (request.readyState == 4) {//console.log(object)
             handleLoadedTeapot(JSON.parse(request.responseText), object);
-            console.log(Buffer)
+            //console.log(Buffer)
         }
     }
     request.send();
@@ -264,7 +264,7 @@ function drawScene() {
     
         gl.drawArrays(gl.TRIANGLES, 0, Buffer[object[i]].teapotVertexPositionBuffer.numItems);
     }
-    console.log(tx, ty, tz)
+    
 }
 
 function animate() {
