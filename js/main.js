@@ -241,7 +241,6 @@ function drawScene() {
         
         // Setup teapot normal data
         if(shader[i] != 'flat') {
-            console.log("not flat")
             gl.bindBuffer(gl.ARRAY_BUFFER, Buffer[object[i]].teapotVertexNormalBuffer);
             gl.vertexAttribPointer(shaderProgram[shader[i]].vertexNormalAttribute, 
                                     Buffer[object[i]].teapotVertexNormalBuffer.itemSize, 
